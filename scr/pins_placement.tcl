@@ -3,7 +3,7 @@ set inputs [all_inputs]
 set input_pins ""
 
 foreach input $inputs {
-lappend input_pins to[get_full_name $input]
+lappend input_pins [get_full_name $input]
 }
 
 set outputs [all_outputs]
