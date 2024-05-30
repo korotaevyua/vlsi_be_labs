@@ -101,5 +101,81 @@ pdngen
 write_def ./fp.def
 
 
+set_routing_layers -signal met2-met3 -clock met2-met3
+
+set_global_routing_layer_adjustment met1 0
+set_global_routing_layer_adjustment met2 0
+set_global_routing_layer_adjustment met3 0
+set_global_routing_layer_adjustment met4 0
+set_global_routing_layer_adjustment met5 0
+
+set_wire_rc -clock -layer met3
+set_wire_rc -signal -layer met3
+
+##path groups
+group_path -name reg2reg -from [all_registers] -to [all_registers]
+group_path -name in2reg -from [all_inputs] -to [all_registers]
+group_path -name reg2out -from [all_registers] -to [all_outputs]
+group_path -name in2out -from [all_inputs] -to [all_outputs]
+
+##
+set_false_path -from [all_inputs] -to [all_registers]
+set_false_path -from [all_registers] -to [all_outputs]
+set_false_path -from [all_inputs] -to [all_outputs]
+
+#
+unset_propagated_clock [all_clocks]
+
+#
+#global_placement -verbose_level 1 -routability_driven
+global_placement -routability_driven
+
+##remove buffers adding by synt
+remove_buffers    
+
+## add bufer between inputs and its loads
+buffer_ports -inputs
+
+## add bufer between outputs and its fanins
+buffer_ports -outputs
+
+estimate_parasitics -placement
+
+
+## fix slew,fanout,cap, wires
+#repair_design
+
+insert_tiecells -prefix TIE THHVT/Z
+insert_tiecells -prefix TIE TLHVT/Z
+
+repair_tie_fanout -verbose  THHVT/Z
+repair_tie_fanout -verbose  TLHVT/Z
+
+detailed_placement
+
+
+
+optimize_mirroring
+
+check_placement
+
+
+
+set_pdnsim_net_voltage -net VDD -voltage 1.1
+check_power_grid -net VDD
+
+set_layer_rc -via VIA6 -resistance 28e-6
+set_layer_rc -via VIA5 -resistance 28e-6
+set_layer_rc -via VIA4 -resistance 28e-6
+set_layer_rc -via VIA3 -resistance 28e-6
+set_layer_rc -via VIA2 -resistance 28e-6
+set_layer_rc -via VIA1 -resistance 28e-6
+
+analyze_power_grid -net VDD -enable_em -outfile ./$TIME/ir_drop.txt -em_outfile ./$TIME/current_ir.txt -vsrc ./vsrc_90.txt
+
+
+analyze_power_grid -net VSS -enable_em -outfile ./$TIME/vss/ir_drop.txt -em_outfile ./$TIME/vss/current_ir.txt -vsrc ./vsrc_vss_90.txt
+
+
 
  
