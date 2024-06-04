@@ -1,3 +1,5 @@
+#usage yosys ../../scr/syn/syn.tcl -l log.txt
+
 # to use tcl correctly
 yosys -import
 
@@ -6,7 +8,7 @@ read_verilog ../../verilog/seven_segment_seconds.v
 hierarchy -check -top seven_segment_seconds
 
 # the high-level stuff
-procs    ; #only proc worked
+procs
 fsm  
 opt
 memory 
@@ -25,5 +27,8 @@ abc -liberty ../../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 # cleanup
 clean
 
+#statistics
+stat
+
 # write synthesized design
-write_verilog seven_segment_seconds_syn.v
+write_verilog seven_segment_seconds_netlist.v

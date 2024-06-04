@@ -1,11 +1,11 @@
 `default_nettype none
 
 module seven_segment_seconds (
-	input wire clk,
+    input wire clk,
     input wire reset,
     input wire [23:0] compare_in,
     input wire update_compare,
-	output wire [6:0] led_out
+    output wire [6:0] led_out
 );
 
     // external clock is 16MHz, so need 24 bit counter
