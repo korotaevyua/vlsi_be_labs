@@ -1,4 +1,5 @@
 #openroad -gui -log log.txt
+#source ../../scr/layout/run.tcl
 
 #FP
 source ../../scr/layout/load_design.tcl
