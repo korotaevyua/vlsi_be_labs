@@ -5,6 +5,6 @@ filler_placement "$filler_cells"
 check_placement
 report_design_area
 
-write_def fill.def
-write_sdc func_fill.sdc
+write_def final.def
+
 

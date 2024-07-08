@@ -1,11 +1,5 @@
 set_routing_layers -signal met2-met3 -clock met2-met3
 
-set_global_routing_layer_adjustment met1 0
-set_global_routing_layer_adjustment met2 0
-set_global_routing_layer_adjustment met3 0
-set_global_routing_layer_adjustment met4 0
-set_global_routing_layer_adjustment met5 0
-
 set_wire_rc -clock -layer met3
 set_wire_rc -signal -layer met3
 
@@ -41,15 +35,6 @@ set root_ckbuf_list "sky130_fd_sc_hd__clkbuf_8"
 clock_tree_synthesis \
 -buf_list $ckbuf_list \
 -root_buf $root_ckbuf_list
-
-report_cts -out_file cts.txt
-
-write_def cts.def
-write_sdc func_CTS.sdc
-
-
-set_wire_rc -clock -layer met3
-set_wire_rc -signal -layer met3
 
 set_propagated_clock [all_clocks]
 
