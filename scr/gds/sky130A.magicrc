@@ -31,7 +31,7 @@ tech load $PDK_ROOT/libs.tech/magic/sky130A.tech
 if {[tech name] != "sky130A"} {quit -noprompt}
 
 # load device generator
-source $PDK_ROOT/libs.tech/magic/sky130A.tcl
+#source $PDK_ROOT/libs.tech/magic/sky130A.tcl
 
 # set units to lambda grid 
 snap lambda
@@ -47,7 +47,7 @@ set SUB VSUBS
 if {[catch {set MAGTYPE $env(MAGTYPE)}]} {
    set MAGTYPE mag
 }
-
+set MAGTYPE mag
 # add path to reference cells
 if {[file isdir ${PDK_ROOT}/libs.ref/${MAGTYPE}]} {
     #addpath ${PDK_ROOT}/libs.ref/${MAGTYPE}/sky130_fd_pr
