@@ -1,7 +1,6 @@
 # Лабораторная работа по Синтезу и Топологии СБИС с ипользованием Open Source САПР
 
-## Table of Contents
+## Содержание
 
-Please read our code of conduct [here](intro.md).
-
-
+1. [Подготовка](intro.md).
+2. Логический синтез.
