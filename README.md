@@ -1,4 +1,7 @@
 # vlsi_be_labs
+[![Documentation Status](https://readthedocs.org/projects/vlsi-be-labs/badge/?version=latest)](https://[<your-project-name>](https://readthedocs.org/projects/vlsi-be-labs/badge/?version=latest).readthedocs.io/en/latest/?badge=latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Репозиторий содержит необходимый набор файлов для выполнения практической работы по логическому синтезу и топологическому проектированию блока цифровой микросхемы в среде OpenLane.
 
 Описание заданий доступно по [ссылке](https://vlsi-be-labs.readthedocs.io/ru/latest/intro.html). Описание не включает в себя теоретический материал.
