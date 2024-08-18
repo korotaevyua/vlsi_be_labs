@@ -14,7 +14,7 @@ author = 'Yuri Korotaev'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'recommonmark',
+    'myst_parser',
 ]
 
 # Enable Markdown source file support
@@ -24,15 +24,20 @@ source_suffix = {
 }
 
 # Optional: Auto-generate TOC tree in your Markdown files
-from recommonmark.transform import AutoStructify
+#from recommonmark.transform import AutoStructify
 
-def setup(app):
-    app.add_config_value('recommonmark_config', {
-            'url_resolver': lambda url: github_doc_root + url,
-            'auto_toc_tree_section': 'Contents',
-            }, True)
-    app.add_transform(AutoStructify)
+#def setup(app):
+#    app.add_config_value('recommonmark_config', {
+#            'url_resolver': lambda url: github_doc_root + url,
+#            'auto_toc_tree_section': 'Contents',
+#            }, True)
+#    app.add_transform(AutoStructify)
 
+myst_enable_extensions = [
+    "deflist",
+    "dollarmath",
+    "colon_fence",
+]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
