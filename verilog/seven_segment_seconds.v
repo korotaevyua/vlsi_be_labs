@@ -8,7 +8,6 @@ module seven_segment_seconds (
     output wire [6:0] led_out
 );
 
-    // external clock is 16MHz, so need 24 bit counter
     reg [23:0] second_counter;
     reg [3:0] digit;
     reg [23:0] compare;
