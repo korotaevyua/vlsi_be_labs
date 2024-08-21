@@ -21,7 +21,6 @@
 ############################################################################################
 #set units and define corner
 set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
-define_corners typical
 ############################################################################################
 
 ############################################################################################
@@ -32,8 +31,12 @@ read_lef ../../lefs/sky130_fd_sc_hd.lef ; # load all cell lefs
 ############################################################################################
 
 ############################################################################################
-# Read LIB file
+# Defie corners and read corresponding LIB files
+define_corners fast typical slow
+
+read_liberty -corner fast    ../../lib/sky130_fd_sc_hd__ff_n40C_1v95.lib
 read_liberty -corner typical ../../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -corner slow    ../../lib/sky130_fd_sc_hd__ss_100C_1v40.lib
 ############################################################################################
 
 ############################################################################################
