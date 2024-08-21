@@ -1,26 +1,33 @@
-set_routing_layers -signal met1-met3 -clock met1-met3
+#Copyright (c) 2024 Yuri Korotaev
+#
+#Permission is hereby granted, free of charge, to any person obtaining a copy
+#of this software and associated documentation files (the "Software"), to deal
+#in the Software without restriction, including without limitation the rights
+#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#copies of the Software, and to permit persons to whom the Software is
+#furnished to do so, subject to the following conditions:
+#
+#The above copyright notice and this permission notice shall be included in all
+#copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#SOFTWARE.
 
-global_route -verbose -congestion_report_file congection_map.rpt -guide_file groute.guide
-
-estimate_parasitics -global_routing
-
-repair_timing -setup
-
-estimate_parasitics -global_routing
-
-repair_timing -hold
+#######################################################################################
+#Global and detail route
+global_route
+detailed_route -bottom_routing_layer met1 -top_routing_layer met3 -droute_end_iter 10
+#######################################################################################
 
 detailed_placement
 optimize_mirroring
 
-check_placement
+estimate_parasitics -global_routing
 
-write_def route_global.def
-
-detailed_route -bottom_routing_layer met1 -top_routing_layer met3 \
--output_guide droute.guide \
--output_drc drc.drc \
--droute_end_iter 5
-
-write_def route_detail.def
+write_def route.def
 

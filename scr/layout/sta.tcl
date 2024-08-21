@@ -18,27 +18,4 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-set_routing_layers -signal met2-met3 -clock met2-met3
-set_wire_rc -clock -signal -layers {met1 met2 met3}
-
-set ckbuf_list "sky130_fd_sc_hd__clkbuf_1 sky130_fd_sc_hd__clkbuf_2 sky130_fd_sc_hd__clkbuf_4"
-set root_ckbuf_list "sky130_fd_sc_hd__clkbuf_8"
-
-clock_tree_synthesis \
--buf_list $ckbuf_list \
--root_buf $root_ckbuf_list
-
-set_propagated_clock [all_clocks]
-
-estimate_parasitics -placement
-
-repair_clock_nets
-
-detailed_placement
-optimize_mirroring
-estimate_parasitics -placement
-
-write_def cts_opt.def
-
-
 
