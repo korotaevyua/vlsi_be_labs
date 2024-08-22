@@ -18,7 +18,6 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-
 # usage yosys ../../scr/syn/syn.tcl -l log.txt
 
 # to use tcl correctly

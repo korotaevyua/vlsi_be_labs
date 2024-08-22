@@ -31,7 +31,7 @@ read_lef ../../lefs/sky130_fd_sc_hd.lef ; # load all cell lefs
 ############################################################################################
 
 ############################################################################################
-# Defie corners and read corresponding LIB files
+# Define corners and read corresponding LIB files
 define_corners fast typical slow
 
 read_liberty -corner fast    ../../lib/sky130_fd_sc_hd__ff_n40C_1v95.lib
