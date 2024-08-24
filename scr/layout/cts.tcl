@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-set_routing_layers -signal met2-met3 -clock met2-met3
+set_routing_layers -signal met1-met3 -clock met1-met3
 set_wire_rc -clock -signal -layers {met1 met2 met3}
 
 ##############################################################################################

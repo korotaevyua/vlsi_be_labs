@@ -24,9 +24,6 @@ global_route
 detailed_route -bottom_routing_layer met1 -top_routing_layer met3 -droute_end_iter 10
 #######################################################################################
 
-detailed_placement
-optimize_mirroring
-
 estimate_parasitics -global_routing
 
 write_def route.def
