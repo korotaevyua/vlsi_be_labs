@@ -19,7 +19,7 @@
 #SOFTWARE.
 
 ############################################################################################
-#set units and define corner
+#set units
 set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
 ############################################################################################
 
