@@ -20,8 +20,8 @@
 
 ###########################################
 #set the block size
-set X_size 86.02
-set Y_size 87.04
+set X_size xxx
+set Y_size yyy
 ###########################################
 
 set X_right_core [expr $X_size + 0.46]
