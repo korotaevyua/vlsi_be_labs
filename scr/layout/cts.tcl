@@ -19,7 +19,7 @@
 #SOFTWARE.
 
 set_routing_layers -signal met1-met3 -clock met1-met3
-set_wire_rc -clock -signal -layers {met1 met2 met3}
+set_wire_rc -clock -signal -layer met1 -layer met2 -layer met3
 
 ##############################################################################################
 set ckbuf_list "sky130_fd_sc_hd__clkbuf_1 sky130_fd_sc_hd__clkbuf_2 sky130_fd_sc_hd__clkbuf_4"
