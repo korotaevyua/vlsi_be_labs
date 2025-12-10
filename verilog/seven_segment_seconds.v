@@ -12,18 +12,9 @@ module seven_segment_seconds (
     reg [3:0] digit;
     reg [23:0] compare;
 
-    `ifdef COCOTB_SIM
-        initial begin
-            $dumpfile ("seven_segment_seconds.vcd");
-            $dumpvars (0, seven_segment_seconds);
-            #1;
-        end
-        localparam MAX_COUNT = 100;
-    `else
-        localparam MAX_COUNT = 16_000_000;
-    `endif
-
-
+    
+    localparam MAX_COUNT = 16_000_000;
+    
     always @(posedge clk) begin
         // if reset, set counter to 0
         if (reset) begin
