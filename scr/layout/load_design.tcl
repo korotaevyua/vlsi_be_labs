@@ -18,6 +18,10 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+# Load once per OpenROAD session. Restart OpenROAD to load changed inputs.
+if {![info exists vlsi_design_load_state]} {
+set vlsi_design_load_state loading
+
 ############################################################################################
 #set units
 set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
@@ -49,3 +53,10 @@ link_design seven_segment_seconds
 # Read SDC file
 read_sdc ../../scr/sdc/const.sdc
 ############################################################################################
+
+set vlsi_design_load_state ready
+} elseif {$vlsi_design_load_state eq "ready"} {
+    puts "Design already loaded. Continue with set_fp.tcl; restart OpenROAD to reload inputs."
+} else {
+    error "Previous design load did not finish. Restart OpenROAD before loading again."
+}

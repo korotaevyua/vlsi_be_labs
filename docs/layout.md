@@ -38,6 +38,10 @@ source ../../scr/layout/load_design.tcl
 Произойдет исполнение скрипта load_design.tcl, имеющего следующее содержание:
 
 ```tcl
+# Load once per OpenROAD session. Restart OpenROAD to load changed inputs.
+if {![info exists vlsi_design_load_state]} {
+set vlsi_design_load_state loading
+
 ############################################################################################
 #set units
 set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
@@ -69,9 +73,22 @@ link_design seven_segment_seconds
 # Read SDC file
 read_sdc ../../scr/sdc/const.sdc
 ############################################################################################
+
+set vlsi_design_load_state ready
+} elseif {$vlsi_design_load_state eq "ready"} {
+    puts "Design already loaded. Continue with set_fp.tcl; restart OpenROAD to reload inputs."
+} else {
+    error "Previous design load did not finish. Restart OpenROAD before loading again."
+}
 ```
 
 Данный скрипт задает некоторые начальные настройки, а затем последовательно загружает LEF  и LIB файлы, полученный после логического синтеза нетлист, а также SDC файл. Несколько LIB файлов позволят выполнить статический временной анализ с учетом PVT вариаций.
+
+После успешной загрузки перейдите к заданию 4 и настройке `set_fp.tcl`. Повторно запускать `load_design.tcl` в том же сеансе не требуется: скрипт выведет сообщение, что проект уже загружен, и завершится без повторного чтения библиотек.
+
+Если необходимо загрузить измененный netlist, библиотеки или ограничения, закройте OpenROAD и запустите его заново из `work/layout`. Так же следует поступить, если предыдущая загрузка завершилась ошибкой.
+
+Предупреждение об устаревшем `NOWIREEXTENSIONATPIN` означает, что соответствующая строка LEF игнорируется. Оно не является ошибкой загрузки проекта.
 
 **Разработка floorplan**
 

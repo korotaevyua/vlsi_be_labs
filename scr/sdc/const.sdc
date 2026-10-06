@@ -27,7 +27,8 @@ create_clock [get_ports clk] -name $clk_name -period $clk_period
 set input_delay_value  [expr $clk_period * 0.2]
 set output_delay_value [expr $clk_period * 0.2]
 
-set inputs  [all_inputs ]
+# The clock source itself must not receive an input delay relative to CLK.
+set inputs  [all_inputs -no_clocks]
 set outputs [all_outputs]
 
 set_input_delay  $input_delay_value   -clock [get_clocks $clk_name] $inputs
