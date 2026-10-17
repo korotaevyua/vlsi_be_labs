@@ -20,8 +20,9 @@
 
 #######################################################################################
 #Global and detail route
+set_routing_layers -signal met1-met3 -clock met1-met3
 global_route
-detailed_route -bottom_routing_layer met1 -top_routing_layer met3 -droute_end_iter 10
+detailed_route -droute_end_iter 10
 #######################################################################################
 
 estimate_parasitics -global_routing
