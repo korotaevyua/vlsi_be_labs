@@ -1,0 +1,16 @@
+# Separate technology setup for GDS verification.
+# Resolve the rule file relative to this file, independent of the run directory.
+set drc_script_dir [file dirname [file normalize [info script]]]
+set drc_tech_file [file normalize [file join $drc_script_dir ../../skywater-pdk/libs.tech/magic/sky130A.tech]]
+if {![file readable $drc_tech_file]} {
+    puts stderr "DRC ERROR: Technology file not found: $drc_tech_file"
+    exit 2
+}
+tech load $drc_tech_file
+if {[tech name] ne "sky130A"} {
+    puts stderr "DRC ERROR: Cannot load sky130A technology"
+    exit 2
+}
+crashbackups stop
+drc off
+snap internal
